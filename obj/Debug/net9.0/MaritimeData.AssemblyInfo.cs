@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MaritimeData")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+023e4dd1cc566627143b37c31393e4cbb13ee8e5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+59f460157a5ee9d361cd406d0667f764053ffc92")]
 [assembly: System.Reflection.AssemblyProductAttribute("MaritimeData")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MaritimeData")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
