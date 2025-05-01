@@ -1,16 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MaritimeData.Models;
-using Microsoft.Extensions.ObjectPool;
-
 [Route("api/[controller]")] //define the URL where the controller is accesed
 [ApiController] // transform the class into an API
 
 public class ShipsController : ControllerBase{
 
-    private bool ShipExists(int id){ //verify if already exists a ship with that id in db
-    return _context.Ships.Any(e => e.Id == id);
-}
+   
     private readonly ApplicationDbContext _context;
     public ShipsController(ApplicationDbContext context){
         _context = context;
@@ -18,6 +14,13 @@ public class ShipsController : ControllerBase{
 
     // GET method
 
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<Ship>>> GetShips(){
+        return await _context.Ships.ToListAsync();
+        
+    }
+
+    
     [HttpGet("{id}")]
     public async Task<ActionResult<Ship>> GetShip(int id){
         var ship = await _context.Ships.FindAsync(id);
@@ -74,6 +77,10 @@ public class ShipsController : ControllerBase{
 
         return NoContent();
     }
+
+     private bool ShipExists(int id){ //verify if already exists a ship with that id in db
+    return _context.Ships.Any(e => e.Id == id);
+}
 
 
 }

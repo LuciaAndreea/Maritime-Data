@@ -6,6 +6,11 @@ namespace MaritimeData.Models
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options){}
 
+         protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Ship>().ToTable("ships");
+    }
+
         public DbSet<Ship> Ships {get; set;}
         public DbSet<CountryVisited> CountriesVisited {get; set;}
         public DbSet<Port> Ports {get; set;}
