@@ -8,7 +8,11 @@ namespace MaritimeData.Models
 
          protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Ship>().ToTable("ships");
+         modelBuilder.Entity<Ship>().ToTable("ships");
+         modelBuilder.Entity<Ship>().ToTable("ships");
+         modelBuilder.Entity<Port>().ToTable("ports");
+         modelBuilder.Entity<Voyage>().ToTable("voyages");
+         modelBuilder.Entity<CountryVisited>().ToTable("countriesvisited");
     }
 
         public DbSet<Ship> Ships {get; set;}
