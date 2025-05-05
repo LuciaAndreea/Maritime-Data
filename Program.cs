@@ -2,6 +2,14 @@ using Microsoft.EntityFrameworkCore;
 using MaritimeData.Models;
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>{
+    options.AddPolicy("AllowFrontend",
+    policy => policy.WithOrigins("http://localhost:4200")
+    .AllowAnyHeader()
+    .AllowAnyMethod());
+    
+});
+
 // Add services to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddControllers();
@@ -12,6 +20,7 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
+app.UseCors("AllowFrontend");
 
 using (var scope = app.Services.CreateScope()){
     var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
@@ -30,8 +39,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-
+app.UseAuthorization();
 app.MapControllers();
 app.Run();
 
